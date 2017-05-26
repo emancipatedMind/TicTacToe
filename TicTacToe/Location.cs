@@ -16,13 +16,14 @@
         public State State {
             get => _state;
             set {
-                if (_state != State.Open) return;
                 _state = value;
                 Button.Content = _state;
+                Button.IsEnabled = false;
             }
         }
 
         public void Reset() {
+            Button.IsEnabled = true;
             Button.Content = null;
             _state = State.Open;
         }
