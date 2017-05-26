@@ -19,6 +19,7 @@
         }
 
         [Test]
+        [Apartment(System.Threading.ApartmentState.STA)]
         public void Move_PlayerSelectsPosition0AsFirstMove_ComputerShouldSelectPosition4() {
             var computer = new Computer(_collection);
             int indexSelectedByPlayer = 0;
