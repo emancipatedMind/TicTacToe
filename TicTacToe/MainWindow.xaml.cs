@@ -34,7 +34,8 @@ namespace TicTacToe {
                     Grid.SetColumn(button, column);
                     Grid.SetRow(button, row);
                     board.Children.Add(button);
-                    _squares.Add(new Location(button, column, row));
+                    int index = column + row * 3;
+                    _squares.Add(new Location(button, index));
                 }
         }
 
