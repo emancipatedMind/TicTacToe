@@ -18,12 +18,32 @@ namespace TicTacToe {
     /// </summary>
     public partial class MainWindow : Window {
 
+        LocationCollection _squares = new LocationCollection();
+
         public MainWindow() {
             InitializeComponent();
+
+            for (int row = 0; row < 3; row++)
+                for (int column = 0; column < 3; column++) {
+                    var button = new Button {
+                        Margin = new Thickness(4),
+                        FontSize = 60,
+                        FontWeight = FontWeights.Heavy,
+                    };
+
+                    Grid.SetColumn(button, column);
+                    Grid.SetRow(button, row);
+                    board.Children.Add(button);
+                    _squares.Add(new Location(button, column, row));
+                }
         }
 
         private void Close_Click(object sender, RoutedEventArgs e) {
             Close();
+        }
+
+        private void Reset_Click(object sender, RoutedEventArgs e) {
+            _squares.Reset();
         }
 
     }

@@ -11,6 +11,9 @@
             <MenuItem  Header="_File">
                 <MenuItem Header="_Exit" Click="Close_Click"/>
             </MenuItem>
+            <MenuItem  Header="_Game">
+                <MenuItem Header="_Reset" Click="Reset_Click"/>
+            </MenuItem>
         </Menu>
         <Grid x:Name="board">
             <Grid.RowDefinitions>
