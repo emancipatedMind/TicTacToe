@@ -10,6 +10,9 @@
             Row = row;
         }
 
+        public object XContent { get; set; } = State.X;
+        public object OContent { get; set; } = State.O;
+        public object OpenContent { get; set; } = null;
         public int Column { get; private set; }
         public int Row { get; private set; }
         public Button Button { get; private set; }
@@ -17,14 +20,21 @@
             get => _state;
             set {
                 _state = value;
-                Button.Content = _state;
                 Button.IsEnabled = false;
+                switch(_state) {
+                    case State.X:
+                        Button.Content = XContent;
+                        break;
+                    case State.O:
+                        Button.Content = OContent;
+                        break;
+                }
             }
         }
 
         public void Reset() {
             Button.IsEnabled = true;
-            Button.Content = null;
+            Button.Content = OpenContent;
             _state = State.Open;
         }
 
