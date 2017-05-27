@@ -3,31 +3,30 @@
     public class Location {
 
         Pieces _state = Pieces.None;
+        Button _button;
 
-        public Location(Button button, int index) {
-            Button = button;
-            Index = index;
+        public Location(Button button) {
+            _button = button;
         }
 
         public object XContent { get; set; } = Pieces.X;
         public object OContent { get; set; } = Pieces.O;
         public object OpenContent { get; set; } = null;
-        public int Index { get; private set; }
-        public Button Button { get; private set; }
+        public int Index { get; set; }
         public Pieces Piece {
             get => _state;
             set {
                 _state = value;
-                Button.IsEnabled = _state == Pieces.None;
+                _button.IsEnabled = _state == Pieces.None;
                 switch(_state) {
                     case Pieces.X:
-                        Button.Content = XContent;
+                        _button.Content = XContent;
                         break;
                     case Pieces.O:
-                        Button.Content = OContent;
+                        _button.Content = OContent;
                         break;
                     case Pieces.None:
-                        Button.Content = OpenContent;
+                        _button.Content = OpenContent;
                         break;
                 }
             }
