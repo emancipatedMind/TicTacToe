@@ -52,9 +52,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GameHasBeenWonEventArgs.cs" />
     <Compile Include="GameLogic.cs" />
+    <Compile Include="GameWonException.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="LocationCollection.cs" />
+    <Compile Include="WinningMoveFoundException.cs" />
+    <Compile Include="MoveFoundException.cs" />
     <Compile Include="Pieces.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
