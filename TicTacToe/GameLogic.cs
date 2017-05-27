@@ -12,7 +12,7 @@
             Collection.Where(x => x.Piece == Pieces.None);
 
 
-        public static Location Move() {
+        public static Location PlayRound(int playerMove) {
             if (Collection.Where(x => x.Piece == Pieces.None).Count() > 6)
                 return GetRandomOpenLocation();
 
