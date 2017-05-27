@@ -17,8 +17,7 @@
         public Location GetLocation(Button b) =>
             _collection.Where(l => l.Button == b).First();
 
-        public Location GetLocation(int index) =>
-            _collection.Where(l => l.Index == index).First();
+        public Location this[int index] => _collection[index];
 
         public void Reset() => _collection.ForEach(l => l.Reset());
     }
