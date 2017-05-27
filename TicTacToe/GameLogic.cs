@@ -6,8 +6,8 @@
         static Random rand = new Random();
 
         public static LocationCollection Collection { get; } = new LocationCollection();
-        public static Pieces ComputerPiece { get; set; } = Pieces.O;
-        public static Pieces PlayerPiece => ComputerPiece == Pieces.O ? Pieces.X : Pieces.O;
+        public static Pieces PlayerPiece { get; set; } = Pieces.X;
+        public static Pieces ComputerPiece => PlayerPiece == Pieces.O ? Pieces.X : Pieces.O;
         static IEnumerable<Location> OpenSpaces =>
             Collection.Where(x => x.Piece == Pieces.None);
 
