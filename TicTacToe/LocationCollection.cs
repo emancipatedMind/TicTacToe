@@ -24,5 +24,11 @@
             foreach (var l in _collection)
                 l.Piece = Pieces.None;
         }
+
+        public void FreezeLocations() {
+            foreach (var l in _collection)
+                l.Button.IsEnabled = false;
+        }
+
     }
 }
