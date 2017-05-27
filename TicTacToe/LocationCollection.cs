@@ -19,6 +19,6 @@
 
         public Location this[int index] => _collection[index];
 
-        public void Reset() => _collection.ForEach(l => l.Reset());
+        public void Reset() => _collection.ForEach(l => l.Piece = Pieces.None);
     }
 }

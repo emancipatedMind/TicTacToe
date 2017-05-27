@@ -18,7 +18,7 @@
             get => _state;
             set {
                 _state = value;
-                Button.IsEnabled = false;
+                Button.IsEnabled = _state == Pieces.None;
                 switch(_state) {
                     case Pieces.X:
                         Button.Content = XContent;
@@ -26,14 +26,11 @@
                     case Pieces.O:
                         Button.Content = OContent;
                         break;
+                    case Pieces.None:
+                        Button.Content = OpenContent;
+                        break;
                 }
             }
-        }
-
-        public void Reset() {
-            Button.IsEnabled = true;
-            Button.Content = OpenContent;
-            _state = Pieces.None;
         }
 
         public override string ToString() => $"[{Index}]";
