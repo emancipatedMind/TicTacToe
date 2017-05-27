@@ -33,7 +33,10 @@ namespace TicTacToe {
                     Grid.SetRow(button, row);
                     board.Children.Add(button);
                     int index = column + row * 3;
-                    GameLogic.Collection.Add(new Location(button, index));
+                    GameLogic.Collection[index] = new Location(button);
+
+                    button.CommandParameter = index;
+                    button.Command = new PlayerMoveCommand();
                 }
         }
 
