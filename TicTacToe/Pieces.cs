@@ -1,6 +1,6 @@
 ﻿namespace TicTacToe {
-    public enum State {
-        Open,
+    public enum Pieces {
+        None,
         X,
         O
     }

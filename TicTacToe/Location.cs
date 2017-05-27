@@ -2,28 +2,28 @@
     using System.Windows.Controls;
     public class Location {
 
-        State _state = State.Open;
+        Pieces _state = Pieces.None;
 
         public Location(Button button, int index) {
             Button = button;
             Index = index;
         }
 
-        public object XContent { get; set; } = State.X;
-        public object OContent { get; set; } = State.O;
+        public object XContent { get; set; } = Pieces.X;
+        public object OContent { get; set; } = Pieces.O;
         public object OpenContent { get; set; } = null;
         public int Index { get; private set; }
         public Button Button { get; private set; }
-        public State State {
+        public Pieces Piece {
             get => _state;
             set {
                 _state = value;
                 Button.IsEnabled = false;
                 switch(_state) {
-                    case State.X:
+                    case Pieces.X:
                         Button.Content = XContent;
                         break;
-                    case State.O:
+                    case Pieces.O:
                         Button.Content = OContent;
                         break;
                 }
@@ -33,7 +33,7 @@
         public void Reset() {
             Button.IsEnabled = true;
             Button.Content = OpenContent;
-            _state = State.Open;
+            _state = Pieces.None;
         }
 
         public override string ToString() => $"[{Index}]";
