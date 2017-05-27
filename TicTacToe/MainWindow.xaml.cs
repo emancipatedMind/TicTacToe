@@ -18,8 +18,6 @@ namespace TicTacToe {
     /// </summary>
     public partial class MainWindow : Window {
 
-        LocationCollection _squares = new LocationCollection();
-
         public MainWindow() {
             InitializeComponent();
 
@@ -35,7 +33,7 @@ namespace TicTacToe {
                     Grid.SetRow(button, row);
                     board.Children.Add(button);
                     int index = column + row * 3;
-                    _squares.Add(new Location(button, index));
+                    GameLogic.Collection.Add(new Location(button, index));
                 }
         }
 
@@ -44,9 +42,8 @@ namespace TicTacToe {
         }
 
         private void Reset_Click(object sender, RoutedEventArgs e) {
-            _squares.Reset();
+            GameLogic.Collection.Reset();
         }
 
     }
-
 }
