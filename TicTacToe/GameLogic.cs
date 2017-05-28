@@ -39,6 +39,8 @@
         static IEnumerable<Location> OpenSpaces =>
             Collection.Where(x => x.Piece == Pieces.None);
 
+        public static event EventHandler GameEndsWithNoWinner;
+        public static event EventHandler<GameHasBeenWonEventArgs> GameHasBeenWon;
 
         public static Location PlayRound(int playerMove) {
             if (Collection.Where(x => x.Piece == Pieces.None).Count() > 6)
