@@ -27,7 +27,7 @@
 
         public void FreezeLocations() {
             foreach (var l in _collection)
-                l.Button.IsEnabled = false;
+                l.Content.IsEnabled = false;
         }
 
     }

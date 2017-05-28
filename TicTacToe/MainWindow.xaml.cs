@@ -21,22 +21,22 @@ namespace TicTacToe {
         public MainWindow() {
             InitializeComponent();
 
-                for (int i = 0; i < 9; i++) {
-                    var button = new Button {
-                        Margin = new Thickness(4),
-                        FontSize = 60,
-                        FontWeight = FontWeights.Heavy,
-                    };
+            for (int i = 0; i < 9; i++) {
+                var button = new Button {
+                    Margin = new Thickness(4),
+                    FontSize = 60,
+                    FontWeight = FontWeights.Heavy,
+                };
 
-                    Grid.SetColumn(button, i % 3);
-                    Grid.SetRow(button, i / 3);
-                    board.Children.Add(button);
-                    GameLogic.Collection[i] = new Location(button);
+                Grid.SetColumn(button, i % 3);
+                Grid.SetRow(button, i / 3);
+                board.Children.Add(button);
+                var buttonAdapter = new ButtonAdapter(button);
+                GameLogic.Collection[i] = new Location(buttonAdapter);
 
-                    button.CommandParameter = i;
-                    button.Command = new PlayerMoveCommand();
-                }
-
+                button.CommandParameter = i;
+                button.Command = new PlayerMoveCommand();
+            }
         }
 
         private void Close_Click(object sender, RoutedEventArgs e) {

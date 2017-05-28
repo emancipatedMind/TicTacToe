@@ -52,6 +52,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ButtonAdapter.cs" />
     <Compile Include="GameHasBeenWonEventArgs.cs" />
     <Compile Include="GameLogic.cs" />
     <Compile Include="GameWonException.cs" />
