@@ -4,6 +4,34 @@
     using System.Linq;
     public static class GameLogic {
         static Random rand = new Random();
+        static Dictionary<int, int[][]> _winningSets = new Dictionary<int, int[][]> {
+            {0, new int[][] {
+                new int[] {1, 2},
+                new int[] {3, 6},
+                new int[] {4, 8}
+            }},
+            {2, new int[][] {
+                new int[] {1, 0},
+                new int[] {4, 6},
+                new int[] {5, 8}
+            }},
+            {4, new int[][] {
+                new int[] {0, 8},
+                new int[] {1, 7},
+                new int[] {2, 6},
+                new int[] {3, 5}
+            }},
+            {6, new int[][] {
+                new int[] {3, 0},
+                new int[] {4, 2},
+                new int[] {7, 8}
+            }},
+            {8, new int[][] {
+                new int[] {4, 0},
+                new int[] {5, 2},
+                new int[] {7, 6}
+            }},
+        };
 
         public static LocationCollection Collection { get; } = new LocationCollection();
         public static Pieces PlayerPiece { get; set; } = Pieces.X;
