@@ -2,7 +2,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
-    public class GameLogic {
+    public static class GameLogic {
         static Random rand = new Random();
 
         public static LocationCollection Collection { get; } = new LocationCollection();
