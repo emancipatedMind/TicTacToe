@@ -55,6 +55,7 @@
     <Compile Include="GameHasBeenWonEventArgs.cs" />
     <Compile Include="GameLogic.cs" />
     <Compile Include="GameWonException.cs" />
+    <Compile Include="IEnablableContentSetter.cs" />
     <Compile Include="Location.cs" />
     <Compile Include="LocationCollection.cs" />
     <Compile Include="WinningMoveFoundException.cs" />
