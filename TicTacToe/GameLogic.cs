@@ -42,67 +42,58 @@
         public static event EventHandler GameEndsWithNoWinner;
         public static event EventHandler<GameHasBeenWonEventArgs> GameHasBeenWon;
 
-        public static Location PlayRound(int playerMove) {
-            if (Collection.Where(x => x.Piece == Pieces.None).Count() > 6)
-                return GetRandomOpenLocation();
-
-            Func<Location>[] methods = new Func<Location>[] {
-                CheckIfWinningMoveAvailable,
-                CheckIfOpponentHasWinningMove,
-            };
-
-            foreach(var m in methods) {
-                Location l = m();
-                if (l != null) return l;
+        public static void PlayRound(int playerMove) {
+            try {
             }
-            return GetRandomOpenLocation();
+            catch(GameWonException ex) {
+            }
         }
 
-        static Location CheckIfOpponentHasWinningMove() => CheckForWinningMove(
+        private static void CheckIfLocationWins(Pieces movingPlayer) {
+            var moves = Collection.Where(x => x.Index % 2 == 0 && x.Piece == movingPlayer);
+            foreach(var l in moves) {
+                CheckIfSquareIsPartOfWinningSet(l.Index);
+            }
+        }
+
+        private static void CheckIfSquareIsPartOfWinningSet(int index) {
+            Pieces p = Collection[index].Piece;
+            foreach (var set in _winningSets[index])
+                if (Collection[set[0]].Piece == p && Collection[set[1]].Piece == p)
+                    throw new GameWonException(
+                    Collection
+                        .Where(x => x.Index == set[0] || x.Index == set[1] || x.Index == index)
+                        .OrderBy(x => x.Index)
+                        .ToArray(),
+                        p
+                    );
+        }
+
+        static void CheckIfOpponentHasWinningMove() => CheckForWinningMove(
             Collection.Where(x => x.Piece == PlayerPiece)
         );
 
-        static Location CheckIfWinningMoveAvailable() => CheckForWinningMove(
-            Collection.Where(x => x.Piece == ComputerPiece)
-        );
+        static void CheckIfWinningMoveAvailable() {
+            try {
+                CheckForWinningMove(Collection.Where(x => x.Piece == ComputerPiece));
+            }
+            catch (MoveFoundException ex) {
+                throw new WinningMoveFoundException(ex.Move);
+            }
+        }
 
-        static Location CheckForWinningMove(IEnumerable<Location> checkLocations) {
+        static void CheckForWinningMove(IEnumerable<Location> checkLocations) {
             foreach(var l in checkLocations.Where(x => x.Index % 2 == 0)) {
-                if (l.Index == 4) {
-                    for (int i = 0; i < 9; i++) {
-                        if (i == 4) continue;
-                        Location winningSpace = Collection[8 - i];
-                        bool check = checkLocations.Contains(Collection[i]);
-                        if (check && winningSpace.Piece == Pieces.None)
-                            return winningSpace;
-                    }
-                }
-                else if (l.Index == 0) {
-                    if (checkLocations.Contains(Collection[1]) && Collection[2].Piece == Pieces.None)
-                        return Collection[2];
-                    if (checkLocations.Contains(Collection[3]) && Collection[6].Piece == Pieces.None)
-                        return Collection[6];
-                }
-                else if (l.Index == 2) {
-                    if (checkLocations.Contains(Collection[1]) && Collection[0].Piece == Pieces.None)
-                        return Collection[0];
-                    if (checkLocations.Contains(Collection[5]) && Collection[8].Piece == Pieces.None)
-                        return Collection[8];
-                }
-                else if (l.Index == 6) {
-                    if (checkLocations.Contains(Collection[3]) && Collection[0].Piece == Pieces.None)
-                        return Collection[0];
-                    if (checkLocations.Contains(Collection[7]) && Collection[8].Piece == Pieces.None)
-                        return Collection[8];
-                }
-                else if (l.Index == 8) {
-                    if (checkLocations.Contains(Collection[5]) && Collection[2].Piece == Pieces.None)
-                        return Collection[2];
-                    if (checkLocations.Contains(Collection[7]) && Collection[6].Piece == Pieces.None)
-                        return Collection[6];
+                foreach(var s in _winningSets[l.Index] ) {
+                    CheckSquaresForMove(checkLocations, s[0], s[1]);
+                    CheckSquaresForMove(checkLocations, s[1], s[0]);
                 }
             }
-            return null;
+        }
+
+        static void CheckSquaresForMove(IEnumerable<Location> checkLocations,int square1, int square2) {
+            if (checkLocations.Contains(Collection[square1]) && Collection[square2].Piece == Pieces.None)
+                throw new MoveFoundException(Collection[square2]);
         }
 
         static Location GetRandomOpenLocation() {
