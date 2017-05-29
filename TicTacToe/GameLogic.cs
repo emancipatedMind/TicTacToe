@@ -44,8 +44,40 @@
 
         public static void PlayRound(int playerMove) {
             try {
+
+                try {
+                    Location playerChoice = Collection[playerMove];
+                    playerChoice.Piece = PlayerPiece;
+                    CheckIfLocationWins(PlayerPiece);
+                }
+                catch(IndexOutOfRangeException) { }
+
+                if (Collection.Where(x => x.Piece == Pieces.None).Count() > 6) {
+                    GetRandomOpenLocation().Piece = ComputerPiece;
+                    return;
+                }
+                else if (Collection.Where(x => x.Piece == Pieces.None).Count() == 0) {
+                    GameEndsWithNoWinner?.Invoke(typeof(GameLogic), EventArgs.Empty);
+                    return;
+                }
+
+                try {
+                    CheckIfWinningMoveAvailable();
+                    CheckIfOpponentHasWinningMove();
+                    GetRandomOpenLocation().Piece = ComputerPiece;
+                }
+                catch(MoveFoundException ex) {
+                    ex.Move.Piece = ComputerPiece;
+                }
+                catch(WinningMoveFoundException ex) {
+                    ex.Move.Piece = ComputerPiece;
+                    CheckIfLocationWins(ComputerPiece);
+                }
+
             }
             catch(GameWonException ex) {
+                Collection.FreezeLocations();
+                GameHasBeenWon?.Invoke(typeof(GameLogic), new GameHasBeenWonEventArgs(ex.WinningSet, ex.Winner));
             }
         }
 
