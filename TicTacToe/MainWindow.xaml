@@ -5,27 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TicTacToe"
         mc:Ignorable="d" ResizeMode="CanMinimize"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="400" Width="525">
     <DockPanel LastChildFill="True">
         <Menu DockPanel.Dock="Top">
             <MenuItem  Header="_File">
                 <MenuItem Header="_Exit" Click="Close_Click"/>
             </MenuItem>
-            <MenuItem  Header="_Game">
-                <MenuItem Header="_Reset" Click="Reset_Click"/>
-            </MenuItem>
         </Menu>
-        <Grid x:Name="board">
-            <Grid.RowDefinitions>
-                <RowDefinition />
-                <RowDefinition />
-                <RowDefinition />
-            </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition />
-                <ColumnDefinition />
-                <ColumnDefinition />
-            </Grid.ColumnDefinitions>
-        </Grid>
+        <Grid />
     </DockPanel>
 </Window>
