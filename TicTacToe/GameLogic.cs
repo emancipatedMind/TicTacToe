@@ -3,22 +3,24 @@
     using System.Collections.Generic;
     public class GameLogic {
 
-        private Dictionary<PlayerIs, Position> _positions = new Dictionary<PlayerIs, Position>();
+        private List<Move> _positions = new List<Move>();
 
         public GameLogic() { }
-        public GameLogic(Dictionary<PlayerIs, Position> positions) {
-            _positions = new Dictionary<PlayerIs, Position>(positions);
-        }
 
         public event EventHandler MoveFound;
 
         public void PlayRound(Position position) {
-            _positions.Add(PlayerIs.User, position);
+            _positions.Add(new Move(PlayerIs.User, position));
             ProcessRound();
         }
 
         public void PlayRound() =>
             ProcessRound();
+
+        public void LoadGame(IEnumerable<Move> moves) {
+            _positions.Clear();
+            _positions.AddRange(moves);
+        }
 
         private void ProcessRound() {
             if (_positions.Count == 0) {
