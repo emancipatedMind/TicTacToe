@@ -53,6 +53,8 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="GameLogic.cs" />
+    <Compile Include="InvalidPositionException.cs" />
+    <Compile Include="WinningSetRetriever.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
