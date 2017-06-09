@@ -52,6 +52,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="GameHasBeenWonEventArgs.cs" />
+    <Compile Include="GameHasBeenWonException.cs" />
+    <Compile Include="GameHasEndedInTieException.cs" />
     <Compile Include="GameLogic.cs" />
     <Compile Include="InvalidPositionException.cs" />
     <Compile Include="WinningSetRetriever.cs" />
