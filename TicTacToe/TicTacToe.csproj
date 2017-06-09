@@ -73,6 +73,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Move.cs" />
+    <Compile Include="MoveFoundEventArgs.cs" />
     <Compile Include="PlayerIs.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
