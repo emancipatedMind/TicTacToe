@@ -4,6 +4,8 @@
     using System.Linq;
     public class GameLogic {
 
+        private static Random _rdm = new Random();
+
         private List<Move> _moves = new List<Move>();
         private WinningSetRetriever _winningSetRetriever = new WinningSetRetriever();
 
@@ -28,7 +30,8 @@
             try {
 
                 if (_moves.Count == 0) {
-                    AddNewtoMovesAndFireMoveFoundEvent(new Position());
+                    var randomMove = new Position(_rdm.Next(2), _rdm.Next(2));
+                    AddNewtoMovesAndFireMoveFoundEvent(randomMove);
                     return;
                 }
 
