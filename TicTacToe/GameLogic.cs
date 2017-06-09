@@ -32,10 +32,10 @@
                     return;
                 }
 
-                CheckToSeeIfGameHasEndedInTie();
-
                 var lastMoveByUser = _moves.Where(x => x.Player == PlayerIs.User).Last();
                 CheckToSeeIfUserHasWonGame(lastMoveByUser); 
+
+                CheckToSeeIfGameHasEndedInTie();
 
                 AddNewtoMovesAndFireMoveFoundEvent(new Position(2,0));
                 CheckToSeeIfGameHasEndedInTie();
