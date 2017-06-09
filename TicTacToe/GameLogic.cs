@@ -36,7 +36,7 @@
                 }
 
                 var lastMoveByUser = _moves.Where(x => x.Player == PlayerIs.User).Last();
-                CheckToSeeIfUserHasWonGame(lastMoveByUser); 
+                CheckToSeeIfMoveWonGame(lastMoveByUser);
 
                 CheckToSeeIfGameHasEndedInTie();
 
@@ -57,18 +57,18 @@
                 throw new GameHasEndedInTieException();
         }
 
-        private void CheckToSeeIfUserHasWonGame(Move move) {
+        private void CheckToSeeIfMoveWonGame(Move move) {
             Position[][] winningMoves = _winningSetRetriever.GetWinningPositions(move.Position);
             for (int i = 0; i < winningMoves.Length; i++) {
                 var gameWinningCondition = from m in _moves
-                                           where m.Player == PlayerIs.User
+                                           where m.Player == move.Player
                                            where m.Position == winningMoves[i][0] ||
                                            m.Position == winningMoves[i][1]
                                            select m;
                 if (gameWinningCondition.Count() == 2)
                     throw new GameHasBeenWonException(move);
             }
-        } 
+        }
 
         private void AddNewtoMovesAndFireMoveFoundEvent(Position position) {
             _moves.Add(new Move(PlayerIs.Computer, position));
