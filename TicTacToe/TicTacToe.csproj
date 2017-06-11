@@ -56,6 +56,8 @@
     <Compile Include="GameHasBeenWonException.cs" />
     <Compile Include="GameHasEndedInTieException.cs" />
     <Compile Include="GameLogic.cs" />
+    <Compile Include="IGameContext.cs" />
+    <Compile Include="IGameState.cs" />
     <Compile Include="InvalidPositionException.cs" />
     <Compile Include="MoveCollection.cs" />
     <Compile Include="WinningSetRetriever.cs" />
