@@ -11,5 +11,9 @@
             Position = position;
         }
 
+        public override string ToString() => $"Position Belongs To:{Player};{nameof(Position)}:{Position}";
+        public override int GetHashCode() => ToString().GetHashCode();
+        public override bool Equals(object obj) => obj is Move && GetHashCode() == obj.GetHashCode();
+
     }
 }
