@@ -1,13 +1,15 @@
 ﻿namespace TicTacToe {
-    public struct Move {
+    public class Move {
 
         public PositionBelongsTo Player { get; set; }
         public Position Position { get; private set; }
 
-        public Move(PositionBelongsTo player, Position position) : this() {
+        public Move(Position position) : this(PositionBelongsTo.NoOne, position) { }
+
+        public Move(PositionBelongsTo player, Position position) {
             Player = player;
             Position = position;
-        } 
+        }
 
     }
 }
