@@ -34,14 +34,14 @@
         [Test]
         public void PlayRound_UserSubmitsLastPosition_EventFiredIsGameHasEndedInTie() {
             var partialGame = new Move[] {
-                new Move(PlayerIs.User, new Position(1, 1)),
-                new Move(PlayerIs.Computer, new Position(0, 2)),
-                new Move(PlayerIs.User, new Position(1, 0)),
-                new Move(PlayerIs.Computer, new Position(1, 2)),
-                new Move(PlayerIs.User, new Position(2, 2)),
-                new Move(PlayerIs.Computer, new Position(0, 0)),
-                new Move(PlayerIs.User, new Position(0, 1)),
-                new Move(PlayerIs.Computer, new Position(2, 1)),
+                new Move(PositionBelongsTo.User, new Position(1, 1)),
+                new Move(PositionBelongsTo.Computer, new Position(0, 2)),
+                new Move(PositionBelongsTo.User, new Position(1, 0)),
+                new Move(PositionBelongsTo.Computer, new Position(1, 2)),
+                new Move(PositionBelongsTo.User, new Position(2, 2)),
+                new Move(PositionBelongsTo.Computer, new Position(0, 0)),
+                new Move(PositionBelongsTo.User, new Position(0, 1)),
+                new Move(PositionBelongsTo.Computer, new Position(2, 1)),
             };
             var position = new Position(2, 0);
             var gm = new GameLogic();
@@ -55,13 +55,13 @@
         [Test]
         public void PlayRound_ComputerSubmitsLastPosition_EventFiredIsMoveFoundAndThenGameHasEndedInTie() {
             var partialGame = new Move[] {
-                new Move(PlayerIs.Computer, new Position(1, 1)),
-                new Move(PlayerIs.User, new Position(0, 2)),
-                new Move(PlayerIs.Computer, new Position(1, 0)),
-                new Move(PlayerIs.User, new Position(1, 2)),
-                new Move(PlayerIs.Computer, new Position(2, 2)),
-                new Move(PlayerIs.User, new Position(0, 0)),
-                new Move(PlayerIs.Computer, new Position(0, 1)),
+                new Move(PositionBelongsTo.Computer, new Position(1, 1)),
+                new Move(PositionBelongsTo.User, new Position(0, 2)),
+                new Move(PositionBelongsTo.Computer, new Position(1, 0)),
+                new Move(PositionBelongsTo.User, new Position(1, 2)),
+                new Move(PositionBelongsTo.Computer, new Position(2, 2)),
+                new Move(PositionBelongsTo.User, new Position(0, 0)),
+                new Move(PositionBelongsTo.Computer, new Position(0, 1)),
             };
             var position = new Position(2, 1);
             var gm = new GameLogic();
@@ -78,8 +78,8 @@
         public void PlayRound_UserSubmitsPositionThatThreatensToEndGame_MoveFoundEventContainsPositionToBlock() {
             var gm = new GameLogic();
             var partialGame = new Move[] {
-                new Move(PlayerIs.User, new Position(0, 0)),
-                new Move(PlayerIs.Computer, new Position(1, 2)),
+                new Move(PositionBelongsTo.User, new Position(0, 0)),
+                new Move(PositionBelongsTo.Computer, new Position(1, 2)),
             };
             var position = new Position(1, 0);
             var expectedPosition = new Position(2, 0);

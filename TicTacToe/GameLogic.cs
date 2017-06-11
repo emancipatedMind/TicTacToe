@@ -14,7 +14,7 @@
         public event EventHandler GameHasBeenWon;
 
         public void PlayRound(Position position) {
-            _moves.Add(new Move(PlayerIs.User, position));
+            _moves.Add(new Move(PositionBelongsTo.User, position));
             ProcessRound();
         }
 
@@ -35,7 +35,7 @@
                     return;
                 }
 
-                var lastMoveByUser = _moves.Where(x => x.Player == PlayerIs.User).Last();
+                var lastMoveByUser = _moves.Where(x => x.Player == PositionBelongsTo.User).Last();
                 CheckToSeeIfMoveWonGame(lastMoveByUser);
 
                 CheckToSeeIfGameHasEndedInTie();
@@ -71,7 +71,7 @@
         }
 
         private void AddNewtoMovesAndFireMoveFoundEvent(Position position) {
-            _moves.Add(new Move(PlayerIs.Computer, position));
+            _moves.Add(new Move(PositionBelongsTo.Computer, position));
             MoveFound?.Invoke(this, new MoveFoundEventArgs(position));
         }
 
