@@ -48,6 +48,16 @@
             Assert.IsTrue(position.Row >= 0 && position.Row < 3);
         }
 
+        [Test]
+        public void Handle_MoveCollectionContainsNoMovesMadeByUser_StateDoesNotChange() {
+            SetUp();
+
+            var initialState = new InitialGameState(_contextMock);
+            _contextMock.State = initialState;
+            initialState.PlayRound();
+            Assert.IsInstanceOf<InitialGameState>(_contextMock.State);
+        }
+
         private void SetUp() {
             _contextMock = new GameContextMock();
 
