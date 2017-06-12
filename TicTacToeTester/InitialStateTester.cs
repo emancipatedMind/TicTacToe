@@ -27,6 +27,27 @@
             Assert.IsTrue(position.Row >= 0 && position.Row < 3);
         }
 
+        [Test]
+        public void Handle_MoveCollectionContainsOneMoveMadeByUser_MoveFoundEventFiresWithRandomMove() {
+            SetUp();
+
+            _contextMock.Moves[new Position(0, 0)].Player = PositionBelongsTo.User;
+
+            Position position = new Position();
+            bool eventFired = false;
+
+            var initialState = new InitialState(_contextMock);
+            initialState.MoveFound += (s, e) => {
+                eventFired = true;
+                position = e.Position;
+            };
+            initialState.Handle();
+
+            Assert.IsTrue(eventFired);
+            Assert.IsTrue(position.Column >= 0 && position.Column < 3);
+            Assert.IsTrue(position.Row >= 0 && position.Row < 3);
+        }
+
         private void SetUp() {
             _contextMock = new GameContextMock();
 
