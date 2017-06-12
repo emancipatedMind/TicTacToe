@@ -2,7 +2,7 @@
     using System;
     public interface IGameState {
         IGameContext Context { get; }
-        void Handle();
+        void PlayRound();
         event EventHandler<MoveFoundEventArgs> MoveFound;
     }
 }

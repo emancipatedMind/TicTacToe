@@ -20,7 +20,7 @@
                 eventFired = true;
                 position = e.Position;
             };
-            initialState.Handle();
+            initialState.PlayRound();
 
             Assert.IsTrue(eventFired);
             Assert.IsTrue(position.Column >= 0 && position.Column < 3);
@@ -41,7 +41,7 @@
                 eventFired = true;
                 position = e.Position;
             };
-            initialState.Handle();
+            initialState.PlayRound();
 
             Assert.IsTrue(eventFired);
             Assert.IsTrue(position.Column >= 0 && position.Column < 3);

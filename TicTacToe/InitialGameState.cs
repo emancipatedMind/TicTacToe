@@ -12,7 +12,7 @@
 
         public event EventHandler<MoveFoundEventArgs> MoveFound;
 
-        public void Handle() {
+        public void PlayRound() {
 
             var availableMoves = Context.Moves.Where(m => m.Player == PositionBelongsTo.NoOne);
             var userMoves = Context.Moves.Where(m => m.Player == PositionBelongsTo.User);
