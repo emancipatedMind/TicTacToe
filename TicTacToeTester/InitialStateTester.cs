@@ -15,7 +15,7 @@
             Position position = new Position();
             bool eventFired = false;
 
-            var initialState = new InitialState(_contextMock);
+            var initialState = new InitialGameState(_contextMock);
             initialState.MoveFound += (s, e) => {
                 eventFired = true;
                 position = e.Position;
@@ -36,7 +36,7 @@
             Position position = new Position();
             bool eventFired = false;
 
-            var initialState = new InitialState(_contextMock);
+            var initialState = new InitialGameState(_contextMock);
             initialState.MoveFound += (s, e) => {
                 eventFired = true;
                 position = e.Position;

@@ -1,9 +1,9 @@
 ﻿namespace TicTacToe {
     using System;
     using System.Linq;
-    public class InitialState : IGameState {
+    public class InitialGameState : IGameState {
 
-        public InitialState(IGameContext context) {
+        public InitialGameState(IGameContext context) {
             Context = context;
             Context.State = this;
         }

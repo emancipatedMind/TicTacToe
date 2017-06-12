@@ -59,7 +59,7 @@
     <Compile Include="GameLogic.cs" />
     <Compile Include="IGameContext.cs" />
     <Compile Include="IGameState.cs" />
-    <Compile Include="InitialState.cs" />
+    <Compile Include="InitialGameState.cs" />
     <Compile Include="InvalidPositionException.cs" />
     <Compile Include="MoveCollection.cs" />
     <Compile Include="WinningSetRetriever.cs" />
