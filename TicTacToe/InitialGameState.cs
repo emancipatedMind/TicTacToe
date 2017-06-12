@@ -3,9 +3,10 @@
     using System.Linq;
     public class InitialGameState : IGameState {
 
+        public InitialGameState(IGameState state) : this(state.Context) { }
+
         public InitialGameState(IGameContext context) {
             Context = context;
-            Context.State = this;
         }
 
         public IGameContext Context { get; private set; }
