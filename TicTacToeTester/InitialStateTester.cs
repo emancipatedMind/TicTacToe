@@ -48,16 +48,6 @@
             Assert.IsTrue(position.Row >= 0 && position.Row < 3);
         }
 
-        [Test]
-        public void Handle_MoveCollectionContainsNoMovesMadeByUser_StateDoesNotChange() {
-            SetUp();
-
-            var initialState = new InitialGameState(_contextMock);
-            _contextMock.State = initialState;
-            initialState.PlayRound();
-            Assert.IsInstanceOf<InitialGameState>(_contextMock.State);
-        }
-
         private void SetUp() {
             _contextMock = new GameContextMock();
 
@@ -65,6 +55,27 @@
                 for (int row = 0; row < 3; row++)
                     _contextMock.Moves.Add(new Move(new Position(column, row)));
         }
+
+        [TestFixture]
+        public class Next_state_should {
+
+            [Test]
+            public void not_change_if_board_contains_no_user_moves() {
+                var game = new GameContextMock();
+
+                for (int column = 0; column < 3; column++)
+                    for (int row = 0; row < 3; row++)
+                        game.Moves.Add(new Move(new Position(column, row)));
+
+                game.Moves[new Position(0, 0)].Player = PositionBelongsTo.User;
+
+                var initialState = new InitialGameState(game);
+                game.State = initialState;
+                initialState.PlayRound();
+                Assert.IsInstanceOf<InitialGameState>(game.State);
+            }
+        }
+
     }
 
 }
