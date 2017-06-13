@@ -31,7 +31,7 @@
         public void Handle_MoveCollectionContainsOneMoveMadeByUser_MoveFoundEventFiresWithRandomMove() {
             SetUp();
 
-            _contextMock.Moves[new Position(0, 0)].Player = PositionBelongsTo.User;
+            _contextMock.Board[new Position(0, 0)].Player = PositionBelongsTo.User;
 
             Position position = new Position();
             bool eventFired = false;
@@ -53,7 +53,7 @@
 
             for (int column = 0; column < 3; column++)
                 for (int row = 0; row < 3; row++)
-                    _contextMock.Moves.Add(new Move(new Position(column, row)));
+                    _contextMock.Board.Add(new Move(new Position(column, row)));
         }
 
         [TestFixture]
@@ -65,9 +65,9 @@
 
                 for (int column = 0; column < 3; column++)
                     for (int row = 0; row < 3; row++)
-                        game.Moves.Add(new Move(new Position(column, row)));
+                        game.Board.Add(new Move(new Position(column, row)));
 
-                game.Moves[new Position(0, 0)].Player = PositionBelongsTo.User;
+                game.Board[new Position(0, 0)].Player = PositionBelongsTo.User;
 
                 var initialState = new InitialGameState(game);
                 game.State = initialState;

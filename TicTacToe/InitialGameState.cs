@@ -15,8 +15,8 @@
 
         public void PlayRound() {
 
-            var availableMoves = Context.Moves.Where(m => m.Player == PositionBelongsTo.NoOne);
-            var userMoves = Context.Moves.Where(m => m.Player == PositionBelongsTo.User);
+            var availableMoves = Context.Board.Where(m => m.Player == PositionBelongsTo.NoOne);
+            var userMoves = Context.Board.Where(m => m.Player == PositionBelongsTo.User);
 
             var rnd = new Random();
             Move[] currentlyAvailableMoves = availableMoves.ToArray();

@@ -1,6 +1,6 @@
 ﻿namespace TicTacToe {
     public interface IGameContext {
-        MoveCollection Moves { get; }
+        MoveCollection Board { get; }
         IGameState State { get; set; }
     }
 }
