@@ -1,59 +1,53 @@
 ﻿namespace TicTacToeTester {
     using NUnit.Framework;
-    using System;
     using TicTacToe;
-    [TestFixture] 
     public class InitialStateTester {
 
-        GameContextMock _contextMock;
-        Random _randomizer = new Random();
+        [TestFixture]
+        public class Fire_MoveFound_event {
 
-        [Test]
-        public void Handle_MoveCollectionContainsNoMovesByEitherPlayer_MoveFoundEventFiresWithRandomMove() {
-            SetUp();
+            [Test]
+            public void if_Board_contains_no_moves_by_either_player() {
+                var game = new GameContextMock();
 
-            Position position = new Position();
-            bool eventFired = false;
+                for (int column = 0; column < 3; column++)
+                    for (int row = 0; row < 3; row++)
+                        game.Board.Add(new Move(new Position(column, row)));
 
-            var initialState = new InitialGameState(_contextMock);
-            initialState.MoveFound += (s, e) => {
-                eventFired = true;
-                position = e.Position;
-            };
-            initialState.PlayRound();
+                Position? position = null;
 
-            Assert.IsTrue(eventFired);
-            Assert.IsTrue(position.Column >= 0 && position.Column < 3);
-            Assert.IsTrue(position.Row >= 0 && position.Row < 3);
-        }
+                var initialState = new InitialGameState(game);
+                initialState.MoveFound += (s, e) => {
+                    position = e.Position;
+                };
+                initialState.PlayRound();
 
-        [Test]
-        public void Handle_MoveCollectionContainsOneMoveMadeByUser_MoveFoundEventFiresWithRandomMove() {
-            SetUp();
+                Assert.IsTrue(position?.Column >= 0 && position?.Column < 3);
+                Assert.IsTrue(position?.Row >= 0 && position?.Row < 3);
+            }
 
-            _contextMock.Board[new Position(0, 0)].Player = PositionBelongsTo.User;
+            [Test]
+            public void if_Board_already_contains_move_by_user() {
+                var game = new GameContextMock();
 
-            Position position = new Position();
-            bool eventFired = false;
+                for (int column = 0; column < 3; column++)
+                    for (int row = 0; row < 3; row++)
+                        game.Board.Add(new Move(new Position(column, row)));
 
-            var initialState = new InitialGameState(_contextMock);
-            initialState.MoveFound += (s, e) => {
-                eventFired = true;
-                position = e.Position;
-            };
-            initialState.PlayRound();
+                game.Board[new Position(0, 0)].Player = PositionBelongsTo.User;
 
-            Assert.IsTrue(eventFired);
-            Assert.IsTrue(position.Column >= 0 && position.Column < 3);
-            Assert.IsTrue(position.Row >= 0 && position.Row < 3);
-        }
+                Position? position = null;
 
-        private void SetUp() {
-            _contextMock = new GameContextMock();
+                var initialState = new InitialGameState(game);
+                initialState.MoveFound += (s, e) => {
+                    position = e.Position;
+                };
+                initialState.PlayRound();
 
-            for (int column = 0; column < 3; column++)
-                for (int row = 0; row < 3; row++)
-                    _contextMock.Board.Add(new Move(new Position(column, row)));
+                Assert.IsTrue(position?.Column >= 0 && position?.Column < 3);
+                Assert.IsTrue(position?.Row >= 0 && position?.Row < 3);
+            }
+
         }
 
         [TestFixture]
@@ -74,6 +68,7 @@
                 initialState.PlayRound();
                 Assert.IsInstanceOf<InitialGameState>(game.State);
             }
+
         }
 
     }
