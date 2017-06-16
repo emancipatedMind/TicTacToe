@@ -9,20 +9,29 @@
             _board = board;
         }
 
-        public bool HasDeterminedThatUserWonGameWith(Position latestPosition) =>
+        public void ChecksToSeeIfUserEndedGameWith(Position latestPosition) {
             CheckIfGameHasBeenWon(PositionBelongsTo.User, latestPosition);
+            CheckToSeeIfGameHasEndedInTie();
+        }
 
-        public bool HasDeterminedThatComputerWonGameWith(Position latestPosition) =>
+        public void ChecksToSeeIfComputerEndedGameWith(Position latestPosition) {
             CheckIfGameHasBeenWon(PositionBelongsTo.Computer, latestPosition);
+            CheckToSeeIfGameHasEndedInTie();
+        }
 
-        private bool CheckIfGameHasBeenWon(PositionBelongsTo player, Position latestPosition) {
+        private void CheckIfGameHasBeenWon(PositionBelongsTo player, Position latestPosition) {
             Position[] positions = _board.Where(m => m.Player == player).Select(m => m.Position).ToArray();
             Position[][] possibleWinningPositions = _winningSetRetriever.GetWinningPositions(latestPosition);
             foreach(Position[] set in possibleWinningPositions) {
                 if (positions.Contains(set[0]) && positions.Contains(set[1]))
-                    return true;
+                    throw new GameHasBeenWonException();
             }
-            return false;
+        }
+
+        private void CheckToSeeIfGameHasEndedInTie() {
+            var availableMoveCount = _board.Where(m => m.Player == PositionBelongsTo.NoOne).ToArray().Length;
+            if (availableMoveCount == 0)
+                throw new GameHasEndedInTieException();
         }
 
     }

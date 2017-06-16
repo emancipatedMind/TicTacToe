@@ -55,6 +55,7 @@
     <Compile Include="ComputerPlayer.cs" />
     <Compile Include="GameContext.cs" />
     <Compile Include="GameHasBeenWonEventArgs.cs" />
+    <Compile Include="GameHasBeenWonException.cs" />
     <Compile Include="GameHasEndedInTieException.cs" />
     <Compile Include="GameLogic.cs" />
     <Compile Include="IGameContext.cs" />

@@ -4,10 +4,10 @@
     public class JudgeTester {
 
         [TestFixture]
-        public class If_user_has {
+        public class Judge_throw_an_exception_if {
 
             [Test]
-            public void submitted_winning_position_judge_should_return_true() {
+            public void user_submitted_winning_position() {
                 MoveCollection board = new MoveCollection();
                 var judge = new Judge(board);
 
@@ -30,11 +30,15 @@
                     board[move.Position].Player = move.Player;
 
                 foreach (var position in winningPositions)
-                    Assert.IsTrue(judge.HasDeterminedThatUserWonGameWith(position));
+                    Assert.Throws<GameHasBeenWonException>(() => judge.ChecksToSeeIfUserEndedGameWith(position));
             }
+        }
+
+        [TestFixture]
+        public class Judge_does_not_throw_exception_if {
 
             [Test]
-            public void submitted_neutral_position_judge_should_return_false() {
+            public void user_submits_non_winning_position_which_does_not_end_game_in_tie() {
                 MoveCollection board = new MoveCollection();
                 var judge = new Judge(board);
 
@@ -57,7 +61,7 @@
                     board[move.Position].Player = move.Player;
 
                 foreach (var position in winningPositions)
-                    Assert.IsFalse(judge.HasDeterminedThatUserWonGameWith(position));
+                    Assert.DoesNotThrow(() => judge.ChecksToSeeIfUserEndedGameWith(position));
             }
         }
 
