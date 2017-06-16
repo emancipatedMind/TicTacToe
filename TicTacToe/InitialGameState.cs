@@ -20,7 +20,7 @@
 
             var rnd = new Random();
             Move[] currentlyAvailableMoves = availableMoves.ToArray();
-            Move selectedMove = currentlyAvailableMoves[rnd.Next(currentlyAvailableMoves.Length)]; 
+            Move selectedMove = currentlyAvailableMoves[rnd.Next(currentlyAvailableMoves.Length)];
             selectedMove.Player = PositionBelongsTo.Computer;
             MoveFound?.Invoke(this, new MoveFoundEventArgs(selectedMove.Position));
 

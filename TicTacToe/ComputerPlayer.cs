@@ -14,7 +14,7 @@
 
             _randomMover = randomMover;
             _logicalMover = winningMover;
-        } 
+        }
 
         public Position MakeMove() {
             if (LogicalMoveUnnecessary) return RandomMove;

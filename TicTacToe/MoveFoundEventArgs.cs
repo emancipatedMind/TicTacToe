@@ -4,6 +4,6 @@
         public Position Position { get; private set; }
         public MoveFoundEventArgs(Position position) {
             Position = position;
-        } 
+        }
     }
 }

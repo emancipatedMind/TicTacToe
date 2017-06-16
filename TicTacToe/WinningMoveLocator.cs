@@ -10,7 +10,7 @@
         public WinningMoveLocator(MoveCollection board, IMoveMaker successor) {
             _board = board;
             _successor = successor;
-        } 
+        }
 
         public Position MakeMove() {
             if (WinningMoveAvailable) return _winningMove;
@@ -19,8 +19,8 @@
 
         private bool WinningMoveAvailable {
             get {
-                Position[] myPositions = _board.Where(m => m.Player == PositionBelongsTo.Computer).Select(m => m.Position).ToArray(); 
-                Position[] availablePositions = _board.Where(m => m.Player == PositionBelongsTo.NoOne).Select(m => m.Position).ToArray(); 
+                Position[] myPositions = _board.Where(m => m.Player == PositionBelongsTo.Computer).Select(m => m.Position).ToArray();
+                Position[] availablePositions = _board.Where(m => m.Player == PositionBelongsTo.NoOne).Select(m => m.Position).ToArray();
                 foreach (var position in myPositions) {
                     var winningSets = _winningSetRetriever.GetWinningPositions(position);
                     foreach (var set in winningSets) {

@@ -19,8 +19,8 @@
 
         private bool StrategicMoveAvailable {
             get {
-                Position[] userPosition = _board.Where(m => m.Player == PositionBelongsTo.User).Select(m => m.Position).ToArray(); 
-                Position[] availablePositions = _board.Where(m => m.Player == PositionBelongsTo.NoOne).Select(m => m.Position).ToArray(); 
+                Position[] userPosition = _board.Where(m => m.Player == PositionBelongsTo.User).Select(m => m.Position).ToArray();
+                Position[] availablePositions = _board.Where(m => m.Player == PositionBelongsTo.NoOne).Select(m => m.Position).ToArray();
                 foreach (var position in userPosition) {
                     var winningSets = _winningSetRetriever.GetWinningPositions(position);
                     foreach (var set in winningSets) {
