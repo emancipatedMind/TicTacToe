@@ -7,6 +7,35 @@
         public class Judge_throw_an_exception_if {
 
             [Test]
+            public void no_more_available_moves_left() {
+                MoveCollection board = new MoveCollection();
+                var judge = new Judge(board);
+
+                for (int column = 0; column < 3; column++)
+                    for (int row = 0; row < 3; row++)
+                        board.Add(new Move(new Position(column, row)));
+
+                Move[] game = new Move[] {
+                    new Move(PositionBelongsTo.User, new Position(0, 0)),
+                    new Move(PositionBelongsTo.Computer, new Position(1, 1)),
+                    new Move(PositionBelongsTo.User, new Position(2, 0)),
+                    new Move(PositionBelongsTo.Computer, new Position(1, 0)),
+                    new Move(PositionBelongsTo.User, new Position(1, 2)),
+                    new Move(PositionBelongsTo.Computer, new Position(0, 1)),
+                    new Move(PositionBelongsTo.User, new Position(2, 1)),
+                    new Move(PositionBelongsTo.Computer, new Position(2, 2)),
+                    new Move(PositionBelongsTo.User, new Position(0, 2)),
+                };
+
+                foreach(var move in game)
+                    board[move.Position].Player = move.Player;
+
+                Position lastPosition = new Position(1, 2);
+
+                Assert.Throws<GameHasEndedInTieException>(() => judge.ChecksToSeeIfUserEndedGameWith(lastPosition));
+            }
+
+            [Test]
             public void user_submitted_winning_position() {
                 MoveCollection board = new MoveCollection();
                 var judge = new Judge(board);
