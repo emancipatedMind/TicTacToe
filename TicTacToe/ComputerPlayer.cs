@@ -17,14 +17,14 @@
         } 
 
         public Position MakeMove() {
-            if (LogicalMovesUnnecessary) return RandomMove;
+            if (LogicalMoveUnnecessary) return RandomMove;
             return LogicalMove;
         }
 
-        private bool LogicalMovesUnnecessary {
+        private bool LogicalMoveUnnecessary {
             get {
-                var availableMoves = _board.Where(m => m.Player == PositionBelongsTo.NoOne).ToArray();
-                return availableMoves.Length >= 7;
+                var availableMoveCount = _board.Where(m => m.Player == PositionBelongsTo.NoOne).ToArray().Length;
+                return availableMoveCount >= 7 || availableMoveCount == 1;
             }
         }
 
