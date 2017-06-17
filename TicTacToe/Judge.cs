@@ -20,19 +20,20 @@
         }
 
         private void CheckIfGameHasBeenWon(PositionBelongsTo player, Position latestPosition) {
-            Position[] positions = _board.Where(m => m.Player == player).Select(m => m.Position).ToArray();
+            Position[] playerPositions = _board.Where(m => m.Player == player).Select(m => m.Position).ToArray();
             Position[][] possibleWinningPositions = _winningSetRetriever.GetWinningPositions(latestPosition);
-            foreach(Position[] set in possibleWinningPositions) {
-                if (positions.Contains(set[0]) && positions.Contains(set[1]))
+            foreach(var set in possibleWinningPositions) {
+                if (playerPositions.Contains(set[0]) && playerPositions.Contains(set[1]))
                     throw new GameHasBeenWonException();
             }
         }
 
         private void CheckToSeeIfGameHasEndedInTie() {
-            var availableMoveCount = _board.Where(m => m.Player == PositionBelongsTo.NoOne).ToArray().Length;
-            if (availableMoveCount == 0)
+            if (AvailableMovesExhausted)
                 throw new GameHasEndedInTieException();
         }
 
+        private bool AvailableMovesExhausted =>
+            _board.Where(m => m.Player == PositionBelongsTo.NoOne).ToArray().Length == 0;
     }
 }
