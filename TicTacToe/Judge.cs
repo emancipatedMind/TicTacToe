@@ -11,12 +11,10 @@
 
         public void ChecksToSeeIfUserEndedGameWith(Position latestPosition) {
             CheckIfGameHasBeenWon(PositionBelongsTo.User, latestPosition);
-            CheckToSeeIfGameHasEndedInTie();
         }
 
         public void ChecksToSeeIfComputerEndedGameWith(Position latestPosition) {
             CheckIfGameHasBeenWon(PositionBelongsTo.Computer, latestPosition);
-            CheckToSeeIfGameHasEndedInTie();
         }
 
         private void CheckIfGameHasBeenWon(PositionBelongsTo player, Position latestPosition) {
@@ -28,12 +26,5 @@
             }
         }
 
-        private void CheckToSeeIfGameHasEndedInTie() {
-            if (AvailableMovesExhausted)
-                throw new GameHasEndedInTieException();
-        }
-
-        private bool AvailableMovesExhausted =>
-            _board.Where(m => m.Player == PositionBelongsTo.NoOne).ToArray().Length == 0;
     }
 }
