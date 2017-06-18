@@ -18,7 +18,7 @@
             Context.Board[computerChosenPosition].Player = PositionBelongsTo.Computer;
             MoveFound?.Invoke(this, new MoveFoundEventArgs(computerChosenPosition));
             if (NextRoundWillHaveEnoughPositionsForAWinner)
-                Context.State = new EndGameState(this);
+                Context.State = new MidGameState(this);
         }
 
         private bool NextRoundWillHaveEnoughPositionsForAWinner {
