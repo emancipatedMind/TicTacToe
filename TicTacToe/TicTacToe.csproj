@@ -53,8 +53,9 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ComputerPlayer.cs" />
+    <Compile Include="NoComputerMoveEndGameState.cs" />
     <Compile Include="MidGameState.cs" />
-    <Compile Include="EndGameState.cs" />
+    <Compile Include="TwoMovesLeftEndGameState.cs" />
     <Compile Include="GameContext.cs" />
     <Compile Include="GameHasBeenWonEventArgs.cs" />
     <Compile Include="GameHasBeenWonException.cs" />
