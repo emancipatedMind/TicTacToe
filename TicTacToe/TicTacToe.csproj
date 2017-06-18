@@ -53,6 +53,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ComputerPlayer.cs" />
+    <Compile Include="EndGameState.cs" />
     <Compile Include="GameContext.cs" />
     <Compile Include="GameHasBeenWonEventArgs.cs" />
     <Compile Include="GameHasBeenWonException.cs" />
