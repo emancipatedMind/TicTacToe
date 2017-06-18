@@ -3,5 +3,6 @@
         MoveCollection Board { get; }
         IGameState State { get; set; }
         ComputerPlayer ComputerPlayer { get; }
+        Judge Judge { get; }
     }
 }
