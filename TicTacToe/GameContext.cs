@@ -12,7 +12,7 @@
 
         public MoveCollection Board { get; } = new MoveCollection();
         public IGameState State { get; set; }
-        public ComputerPlayer ComputerPlayer { get; private set; }
+        public IMoveMaker ComputerPlayer { get; private set; }
         public Judge Judge { get; private set; }
     }
 }

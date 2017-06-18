@@ -1,6 +1,6 @@
 ﻿namespace TicTacToe {
     using System.Linq;
-    public class ComputerPlayer {
+    public class ComputerPlayer : IMoveMaker {
 
         MoveCollection _board;
         IMoveMaker _logicalMover;
