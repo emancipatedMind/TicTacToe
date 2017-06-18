@@ -1,6 +1,7 @@
 ﻿namespace TicTacToeTester {
     using NUnit.Framework;
     using TicTacToe;
+    using TicTacToe.Computer;
     public class JudgeTester {
 
         [TestFixture]

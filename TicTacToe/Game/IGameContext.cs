@@ -1,4 +1,6 @@
 ﻿namespace TicTacToe.Game {
+    using Computer;
+    using State;
     using System.Collections.Generic;
     public interface IGameContext {
         MoveCollection Board { get; }

@@ -1,5 +1,7 @@
 ﻿namespace TicTacToe.Game {
+    using Computer;
     using System.Collections.Generic;
+    using State;
     public class GameContext : IGameContext {
 
         public GameContext() {

@@ -1,6 +1,8 @@
 ﻿namespace TicTacToeTester {
     using NUnit.Framework;
     using TicTacToe;
+    using TicTacToe.Computer;
+    using TicTacToe.Game.State;
     public class InitialStateTester {
 
         [TestFixture]
