@@ -23,7 +23,7 @@
 
         private bool NextRoundWillHaveEnoughPositionsForAWinner {
             get {
-                int availableMoveCount = Context.Board.Where(x => x.Player == PositionBelongsTo.NoOne).ToArray().Length;
+                int availableMoveCount = Context.Board.Where(x => x.Player == PositionBelongsTo.NoOne).Count();
                 return availableMoveCount < 7;
             }
         }

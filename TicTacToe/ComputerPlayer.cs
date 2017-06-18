@@ -23,7 +23,7 @@
 
         private bool LogicalMoveUnnecessary {
             get {
-                var availableMoveCount = _board.Where(m => m.Player == PositionBelongsTo.NoOne).ToArray().Length;
+                var availableMoveCount = _board.Where(m => m.Player == PositionBelongsTo.NoOne).Count();
                 return availableMoveCount >= 7 || availableMoveCount == 1;
             }
         }
