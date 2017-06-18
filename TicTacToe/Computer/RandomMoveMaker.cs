@@ -1,4 +1,4 @@
-﻿namespace TicTacToe {
+﻿namespace TicTacToe.Computer {
     using System;
     using System.Linq;
     public class RandomMoveMaker : IMoveMaker {

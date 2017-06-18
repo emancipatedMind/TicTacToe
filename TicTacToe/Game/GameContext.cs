@@ -1,4 +1,4 @@
-﻿namespace TicTacToe {
+﻿namespace TicTacToe.Game {
     using System.Collections.Generic;
     public class GameContext : IGameContext {
 

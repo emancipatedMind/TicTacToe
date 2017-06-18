@@ -1,4 +1,4 @@
-﻿namespace TicTacToe {
+﻿namespace TicTacToe.Game {
     using System.Collections.Generic;
     public interface IGameContext {
         MoveCollection Board { get; }

@@ -1,4 +1,4 @@
-﻿namespace TicTacToe {
+﻿namespace TicTacToe.Game.State {
     using System;
     public class MidGameState : IGameState {
 

@@ -1,4 +1,4 @@
-﻿namespace TicTacToe {
+﻿namespace TicTacToe.Computer {
     public class WinningSetRetriever {
         public Position[][] GetWinningPositions(Position position) {
             if (position == new Position(2, 1))

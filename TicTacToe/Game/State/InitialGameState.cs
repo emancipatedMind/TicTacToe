@@ -1,4 +1,4 @@
-﻿namespace TicTacToe {
+﻿namespace TicTacToe.Game.State {
     using System;
     using System.Linq;
     public class InitialGameState : IGameState {
