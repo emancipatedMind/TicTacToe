@@ -1,4 +1,5 @@
 ﻿namespace TicTacToe {
+    using System.Collections.Generic;
     public class GameContext : IGameContext {
 
         public GameContext() {
@@ -14,5 +15,6 @@
         public IGameState State { get; set; }
         public IMoveMaker ComputerPlayer { get; private set; }
         public Judge Judge { get; private set; }
+        public List<Move> MoveHistory { get; } = new List<Move>();
     }
 }
