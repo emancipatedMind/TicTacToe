@@ -4,11 +4,21 @@
 
         public GameContext() {
             for (int column = 0; column < 3; column++)
-                for (int row = 0; row < 3; row++)
-                    Board.Add(new Move(new Position(column, row)));
+                for (int row = 0; row < 3; row++) {
+                    var move = new Move(new Position(column, row));
+                    Board.Add(move);
+                    move.PlayerChanged += (s, e) => {
+                        var sender = (Move)s;
+                        if (e.NewPlayer == PositionBelongsTo.NoOne) {
+                            MoveHistory.Remove(sender);
+                        }
+                        MoveHistory.Add(sender);
+                    };
+                }
 
             ComputerPlayer = new ComputerPlayer(Board);
             Judge = new Judge(Board);
+
         }
 
         public MoveCollection Board { get; } = new MoveCollection();
