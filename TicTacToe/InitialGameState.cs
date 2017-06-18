@@ -14,16 +14,18 @@
         public event EventHandler<MoveFoundEventArgs> MoveFound;
 
         public void PlayRound() {
+            Position computerChosenPosition = Context.ComputerPlayer.MakeMove();
+            Context.Board[computerChosenPosition].Player = PositionBelongsTo.Computer;
+            MoveFound?.Invoke(this, new MoveFoundEventArgs(computerChosenPosition));
+            if (NextRoundWillHaveEnoughPositionsForAWinner)
+                Context.State = new EndGameState(this);
+        }
 
-            var availableMoves = Context.Board.Where(m => m.Player == PositionBelongsTo.NoOne);
-            var userMoves = Context.Board.Where(m => m.Player == PositionBelongsTo.User);
-
-            var rnd = new Random();
-            Move[] currentlyAvailableMoves = availableMoves.ToArray();
-            Move selectedMove = currentlyAvailableMoves[rnd.Next(currentlyAvailableMoves.Length)];
-            selectedMove.Player = PositionBelongsTo.Computer;
-            MoveFound?.Invoke(this, new MoveFoundEventArgs(selectedMove.Position));
-
+        private bool NextRoundWillHaveEnoughPositionsForAWinner {
+            get {
+                int availableMoveCount = Context.Board.Where(x => x.Player == PositionBelongsTo.NoOne).ToArray().Length;
+                return availableMoveCount < 7;
+            }
         }
 
     }
