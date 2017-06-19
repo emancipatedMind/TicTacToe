@@ -49,5 +49,13 @@
             MoveFound?.Invoke(this, e);
         }
 
+        public void PlayRound(Position position) {
+            Board[position].Player = PositionBelongsTo.User;
+            PlayRound();
+        }
+
+        public void PlayRound() {
+            State.PlayRound();
+        }
     }
 }
