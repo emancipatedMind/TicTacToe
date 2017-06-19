@@ -2,7 +2,10 @@
     using Computer;
     using System.Collections.Generic;
     using State;
+    using System;
     public class GameContext : IGameContext {
+
+        IGameState _state;
 
         public GameContext() {
             for (int column = 0; column < 3; column++)
@@ -20,12 +23,31 @@
             ComputerPlayer = new ComputerPlayer(Board);
             Judge = new Judge(Board);
 
+            State = new InitialGameState(this);
         }
 
         public MoveCollection Board { get; } = new MoveCollection();
-        public IGameState State { get; set; }
         public IMoveMaker ComputerPlayer { get; private set; }
         public Judge Judge { get; private set; }
         public List<Move> MoveHistory { get; } = new List<Move>();
+        public IGameState State {
+            get => _state;
+            set {
+                if (_state != null) {
+                    if (_state?.GetType() == value.GetType())
+                        return;
+                    _state.MoveFound -= _state_MoveFound;
+                }
+                _state = value;
+                _state.MoveFound += _state_MoveFound;
+            }
+        }
+
+        public event EventHandler<MoveFoundEventArgs> MoveFound;
+
+        private void _state_MoveFound(object sender, MoveFoundEventArgs e) {
+            MoveFound?.Invoke(this, e);
+        }
+
     }
 }
