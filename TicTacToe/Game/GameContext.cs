@@ -11,10 +11,9 @@
                     Board.Add(move);
                     move.PlayerChanged += (s, e) => {
                         var sender = (Move)s;
-                        if (e.NewPlayer == PositionBelongsTo.NoOne) {
+                        if (e.NewPlayer == PositionBelongsTo.NoOne)
                             MoveHistory.Remove(sender);
-                        }
-                        MoveHistory.Add(sender);
+                        else MoveHistory.Add(sender);
                     };
                 }
 
