@@ -9,20 +9,13 @@
             _board = board;
         }
 
-        public void ChecksToSeeIfUserEndedGameWith(Position latestPosition) {
-            CheckIfGameHasBeenWon(PositionBelongsTo.User, latestPosition);
-        }
-
-        public void ChecksToSeeIfComputerEndedGameWith(Position latestPosition) {
-            CheckIfGameHasBeenWon(PositionBelongsTo.Computer, latestPosition);
-        }
-
-        private void CheckIfGameHasBeenWon(PositionBelongsTo player, Position latestPosition) {
-            Position[] playerPositions = _board.Where(m => m.Player == player).Select(m => m.Position).ToArray();
-            Position[][] possibleWinningPositions = _winningSetRetriever.GetWinningPositions(latestPosition);
+        public void ChecksToSeeIfGameHasBeenWonWith(Move move) {
+            Position[] playerPositions = _board.Where(m => m != move && m.Player == move.Player).Select(m => m.Position).ToArray();
+            Position[][] possibleWinningPositions = _winningSetRetriever.GetWinningPositions(move.Position);
             foreach(var set in possibleWinningPositions) {
-                if (playerPositions.Contains(set[0]) && playerPositions.Contains(set[1]))
-                    throw new GameHasBeenWonException();
+                if (playerPositions.Contains(set[0]) && playerPositions.Contains(set[1])) {
+                    throw new GameHasBeenWonException(move);
+                }
             }
         }
 

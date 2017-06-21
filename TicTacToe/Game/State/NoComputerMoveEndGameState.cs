@@ -14,10 +14,14 @@
         public event EventHandler<MoveFoundEventArgs> MoveFound;
 
         public void PlayRound() {
-            Position usersLastMove = Context.MoveHistory.Last().Position;
-            Context.Judge.ChecksToSeeIfUserEndedGameWith(usersLastMove);
+            CheckToSeeIfLastMoveWonGame();
 
             throw new GameHasEndedInTieException();
+        }
+
+        private void CheckToSeeIfLastMoveWonGame() {
+            Move lastMove = Context.MoveHistory.Last();
+            Context.Judge.ChecksToSeeIfGameHasBeenWonWith(lastMove);
         }
 
     }

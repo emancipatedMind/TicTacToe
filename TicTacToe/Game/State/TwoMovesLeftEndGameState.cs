@@ -14,15 +14,19 @@
         public event EventHandler<MoveFoundEventArgs> MoveFound;
 
         public void PlayRound() {
-            Position usersLastMove = Context.MoveHistory.Last().Position;
-            Context.Judge.ChecksToSeeIfUserEndedGameWith(usersLastMove);
+            CheckToSeeIfLastMoveWonGame();
 
             Position computerChosenPosition = Context.ComputerPlayer.MakeMove();
-            Context.Board[computerChosenPosition].Player = PositionBelongsTo.Computer;
             MoveFound?.Invoke(this, new MoveFoundEventArgs(computerChosenPosition));
-            Context.Judge.ChecksToSeeIfComputerEndedGameWith(computerChosenPosition);
+
+            CheckToSeeIfLastMoveWonGame();
 
             throw new GameHasEndedInTieException();
+        }
+
+        private void CheckToSeeIfLastMoveWonGame() {
+            Move lastMove = Context.MoveHistory.Last();
+            Context.Judge.ChecksToSeeIfGameHasBeenWonWith(lastMove);
         }
 
     }

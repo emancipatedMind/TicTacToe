@@ -2,6 +2,7 @@
     using NUnit.Framework;
     using TicTacToe;
     using TicTacToe.Computer;
+    using System.Linq;
     public class JudgeTester {
 
         [TestFixture]
@@ -27,8 +28,8 @@
                 foreach(var move in game)
                     board[move.Position].Player = move.Player;
 
-                var winningPosition = new Position(2, 1);
-                Assert.Throws<GameHasBeenWonException>(() => judge.ChecksToSeeIfUserEndedGameWith(winningPosition));
+                Move winningMove = board.Last();
+                Assert.Throws<GameHasBeenWonException>(() => judge.ChecksToSeeIfGameHasBeenWonWith(winningMove));
             }
 
             [Test]
@@ -51,8 +52,8 @@
                 foreach(var move in game)
                     board[move.Position].Player = move.Player;
 
-                var winningPosition = new Position(2, 1);
-                Assert.Throws<GameHasBeenWonException>(() => judge.ChecksToSeeIfComputerEndedGameWith(winningPosition));
+                Move winningMove = board.Last();
+                Assert.Throws<GameHasBeenWonException>(() => judge.ChecksToSeeIfGameHasBeenWonWith(winningMove));
             }
         }
 
@@ -79,8 +80,8 @@
                 foreach(var move in game)
                     board[move.Position].Player = move.Player;
 
-                var neutralPosition = new Position(0, 2);
-                Assert.DoesNotThrow(() => judge.ChecksToSeeIfUserEndedGameWith(neutralPosition));
+                Move neutralMove = board.Last();
+                Assert.DoesNotThrow(() => judge.ChecksToSeeIfGameHasBeenWonWith(neutralMove));
             }
 
             [Test]
@@ -103,8 +104,8 @@
                 foreach(var move in game)
                     board[move.Position].Player = move.Player;
 
-                var neutralPosition = new Position(1, 2);
-                Assert.DoesNotThrow(() => judge.ChecksToSeeIfComputerEndedGameWith(neutralPosition));
+                Move neutralMove = board.Last();
+                Assert.DoesNotThrow(() => judge.ChecksToSeeIfGameHasBeenWonWith(neutralMove));
             }
         }
 
