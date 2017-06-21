@@ -56,6 +56,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="ButtonViewModel.cs" />
     <Compile Include="Computer\ComputerPlayer.cs" />
     <Compile Include="Game\State\NoComputerMoveEndGameState.cs" />
     <Compile Include="Game\State\MidGameState.cs" />
