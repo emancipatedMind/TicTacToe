@@ -4,6 +4,6 @@
              xmlns:local="clr-namespace:TicTacToe"
              StartupUri="MainWindow.xaml">
     <Application.Resources>
-         
+        <local:GameLogic x:Key="viewModel" />
     </Application.Resources>
 </Application>

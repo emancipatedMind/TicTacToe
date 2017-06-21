@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:TicTacToe"
         mc:Ignorable="d" ResizeMode="CanMinimize"
         Title="MainWindow" Height="400" Width="525">
-    <DockPanel LastChildFill="True">
+    <DockPanel DataContext="{StaticResource viewModel}" LastChildFill="True">
         <Menu DockPanel.Dock="Top">
-            <MenuItem  Header="_File">
+            <MenuItem Header="_File">
                 <MenuItem Header="_Exit" Click="Close_Click"/>
             </MenuItem>
         </Menu>
