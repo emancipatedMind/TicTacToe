@@ -43,6 +43,8 @@
             }
         }
 
+        public event EventHandler GameHasEndedInTie;
+        public event EventHandler<GameHasBeenWonEventArgs> GameHasBeenWon;
 
         private void _state_MoveFound(object sender, MoveFoundEventArgs e) {
             Board[e.Position].Player = PositionBelongsTo.Computer;
@@ -54,7 +56,17 @@
         }
 
         public void PlayRound() {
-            State.PlayRound();
+            try {
+                State.PlayRound();
+            }
+            catch (GameHasEndedInTieException) {
+                State = new InitialGameState(this);
+                GameHasEndedInTie?.Invoke(this, EventArgs.Empty);
+            }
+            catch (GameHasBeenWonException ex) {
+                State = new InitialGameState(this);
+                GameHasBeenWon?.Invoke(this, new GameHasBeenWonEventArgs(ex.WinningMove));
+            }
         }
     }
 }
