@@ -43,10 +43,9 @@
             }
         }
 
-        public event EventHandler<MoveFoundEventArgs> MoveFound;
 
         private void _state_MoveFound(object sender, MoveFoundEventArgs e) {
-            MoveFound?.Invoke(this, e);
+            Board[e.Position].Player = PositionBelongsTo.Computer;
         }
 
         public void PlayRound(Position position) {
