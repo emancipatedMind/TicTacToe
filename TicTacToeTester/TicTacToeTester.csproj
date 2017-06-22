@@ -51,8 +51,6 @@
   <ItemGroup>
     <Compile Include="GameContextMock.cs" />
     <Compile Include="GameLogicTester.cs" />
-    <Compile Include="InitialStateTester.cs" />
-    <Compile Include="JudgeTester.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

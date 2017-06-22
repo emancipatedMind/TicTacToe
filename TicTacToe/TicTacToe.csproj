@@ -58,21 +58,13 @@
     </ApplicationDefinition>
     <Compile Include="ButtonViewModel.cs" />
     <Compile Include="Computer\ComputerPlayer.cs" />
-    <Compile Include="Game\State\NoComputerMoveEndGameState.cs" />
-    <Compile Include="Game\State\MidGameState.cs" />
     <Compile Include="PlayerChangedEventArgs.cs" />
-    <Compile Include="Game\State\TwoMovesLeftEndGameState.cs" />
     <Compile Include="Game\GameContext.cs" />
     <Compile Include="GameHasBeenWonEventArgs.cs" />
-    <Compile Include="Computer\GameHasBeenWonException.cs" />
-    <Compile Include="Game\GameHasEndedInTieException.cs" />
     <Compile Include="GameLogic.cs" />
     <Compile Include="Game\IGameContext.cs" />
-    <Compile Include="Game\State\IGameState.cs" />
     <Compile Include="Computer\IMoveMaker.cs" />
-    <Compile Include="Game\State\InitialGameState.cs" />
     <Compile Include="Computer\InvalidPositionException.cs" />
-    <Compile Include="Computer\Judge.cs" />
     <Compile Include="MoveCollection.cs" />
     <Compile Include="Computer\RandomMoveMaker.cs" />
     <Compile Include="Computer\StrategicMoveLocator.cs" />
@@ -93,7 +85,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Move.cs" />
-    <Compile Include="MoveFoundEventArgs.cs" />
     <Compile Include="PositionBelongsTo.cs" />
     <Compile Include="Position.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
