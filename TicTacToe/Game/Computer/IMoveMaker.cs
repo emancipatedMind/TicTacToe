@@ -1,4 +1,4 @@
-﻿namespace TicTacToe.Computer {
+﻿namespace TicTacToe.Game.Computer {
     public interface IMoveMaker {
         Position MakeMove();
     }

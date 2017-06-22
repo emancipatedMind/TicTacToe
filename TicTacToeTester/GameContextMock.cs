@@ -1,7 +1,7 @@
 ﻿namespace TicTacToeTester {
     using System;
     using TicTacToe;
-    using TicTacToe.Computer;
+    using TicTacToe.Game.Computer;
     using TicTacToe.Game;
     public class GameContextMock : IGameContext {
         public MoveCollection Board { get; } = new MoveCollection();
