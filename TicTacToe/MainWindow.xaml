@@ -12,6 +12,34 @@
                 <MenuItem Header="_Exit" Click="Close_Click"/>
             </MenuItem>
         </Menu>
-        <Grid />
+        <Grid x:Name="board">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition/>
+                <RowDefinition/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Grid.Resources>
+                <Style TargetType="Button">
+                    <Setter Property="FontSize" Value="40" />
+                    <Setter Property="Content" Value="" />
+                    <Setter Property="IsEnabled" Value="True" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding PositionOwner}" Value="{x:Static local:PositionBelongsTo.Computer}">
+                            <Setter Property="Content" Value="O" />
+                            <Setter Property="IsEnabled" Value="False" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding PositionOwner}" Value="{x:Static local:PositionBelongsTo.User}">
+                            <Setter Property="Content" Value="X" />
+                            <Setter Property="IsEnabled" Value="False" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </Grid.Resources>
+        </Grid>
     </DockPanel>
 </Window>
