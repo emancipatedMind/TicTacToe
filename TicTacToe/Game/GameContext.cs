@@ -6,6 +6,7 @@
 
         #region Fields
         WinningSetRetriever _winningSetRetriever = new WinningSetRetriever();
+        bool _computerMovesFirst;
         #endregion
 
         #region Constructors
@@ -42,6 +43,8 @@
         public void Reset() {
             GameOver = false;
             Board.Reset();
+            if (_computerMovesFirst)
+                MakeMove();
         }
         #endregion
 
@@ -74,6 +77,7 @@
             foreach (var set in possibleWinningPositions) {
                 if (playerPositions.Contains(set[0]) && playerPositions.Contains(set[1])) {
                     GameOver = true;
+                    _computerMovesFirst = !_computerMovesFirst;
                     GameHasBeenWon?.Invoke(this, new GameHasBeenWonEventArgs(move));
                     return;
                 }
@@ -81,6 +85,7 @@
 
             if (availableMoves.Count() == 0) {
                 GameOver = true;
+                _computerMovesFirst = !_computerMovesFirst;
                 GameHasEndedInTie?.Invoke(this, EventArgs.Empty);
             }
 
