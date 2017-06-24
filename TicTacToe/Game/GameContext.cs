@@ -74,14 +74,14 @@
             foreach (var set in possibleWinningPositions) {
                 if (playerPositions.Contains(set[0]) && playerPositions.Contains(set[1])) {
                     GameOver = true;
-                    GameHasBeenWon?.BeginInvoke(this, new GameHasBeenWonEventArgs(move), null, null);
+                    GameHasBeenWon?.Invoke(this, new GameHasBeenWonEventArgs(move));
                     return;
                 }
             }
 
             if (availableMoves.Count() == 0) {
                 GameOver = true;
-                GameHasEndedInTie?.BeginInvoke(this, EventArgs.Empty, null, null);
+                GameHasEndedInTie?.Invoke(this, EventArgs.Empty);
             }
 
         }
