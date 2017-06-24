@@ -11,6 +11,9 @@
             <MenuItem Header="_File">
                 <MenuItem Header="_Exit" Click="Close_Click"/>
             </MenuItem>
+            <MenuItem Header="_Game">
+                <MenuItem Header="_Reset" Command="{Binding Reset}"/>
+            </MenuItem>
         </Menu>
         <Grid x:Name="board">
             <Grid.ColumnDefinitions>
@@ -35,6 +38,9 @@
                         </DataTrigger>
                         <DataTrigger Binding="{Binding PositionOwner}" Value="{x:Static local:PositionBelongsTo.User}">
                             <Setter Property="Content" Value="X" />
+                            <Setter Property="IsEnabled" Value="False" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=DataContext.GameOver, RelativeSource={RelativeSource AncestorType=DockPanel}}" Value="True">
                             <Setter Property="IsEnabled" Value="False" />
                         </DataTrigger>
                     </Style.Triggers>

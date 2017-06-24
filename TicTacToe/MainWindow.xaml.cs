@@ -38,9 +38,10 @@ namespace TicTacToe {
 
             viewModel.GameHasEndedInTie += (s, e) => {
                 board.Dispatcher.Invoke(new Action(() => {
-                    MessageBox.Show("Tie. Restart Application to play another game.");
+                    MessageBox.Show("Tie. Reset application to play another game.");
                 }));
             };
+
         }
 
         private void Close_Click(object sender, RoutedEventArgs e) {
