@@ -38,6 +38,11 @@
         public void PlayRound(Position position) => MakeMove(position);
 
         public void PlayRound() => MakeMove();
+
+        public void Reset() {
+            GameOver = false;
+            Board.Reset();
+        }
         #endregion
 
         #region Support Methods
