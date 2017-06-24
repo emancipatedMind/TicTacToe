@@ -6,7 +6,6 @@
 
         #region Fields
         WinningSetRetriever _winningSetRetriever = new WinningSetRetriever();
-        bool _gameOver = false;
         #endregion
 
         #region Constructors
@@ -32,6 +31,7 @@
         #region Properties
         public MoveCollection Board { get; set; } = new MoveCollection();
         public IMoveMaker ComputerPlayer { get; set; }
+        public bool GameOver { get; private set; } = false;
         #endregion
 
         #region Methods
@@ -46,7 +46,7 @@
             if (playerMove != null)
                 Board[playerMove.Value].Player = PositionBelongsTo.User;
 
-            if (_gameOver)
+            if (GameOver)
                 return;
 
             Position computerChosenPosition = ComputerPlayer.MakeMove();
@@ -68,15 +68,15 @@
 
             foreach (var set in possibleWinningPositions) {
                 if (playerPositions.Contains(set[0]) && playerPositions.Contains(set[1])) {
+                    GameOver = true;
                     GameHasBeenWon?.BeginInvoke(this, new GameHasBeenWonEventArgs(move), null, null);
-                    _gameOver = true;
                     return;
                 }
             }
 
             if (availableMoves.Count() == 0) {
+                GameOver = true;
                 GameHasEndedInTie?.BeginInvoke(this, EventArgs.Empty, null, null);
-                _gameOver = true;
             }
 
         }
