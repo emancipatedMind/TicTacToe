@@ -3,7 +3,7 @@
     using System;
     using System.Collections.Generic;
     using ToolkitNFW4.XAML;
-    public class GameLogic {
+    public class GameLogic : EntityBase {
 
         GameContext _model = new GameContext();
         DelegateCommand _startRoundCommand;
