@@ -6,7 +6,6 @@
     public class GameLogic {
 
         GameContext _model = new GameContext();
-        DelegateCommand _playRoundCommand;
         DelegateCommand _startRoundCommand;
 
         public GameLogic() {
@@ -15,6 +14,7 @@
             }
             _model.GameHasEndedInTie += (s, e) => GameHasEndedInTie?.Invoke(this, e);
             _model.GameHasBeenWon += (s, e) => GameHasBeenWon?.Invoke(this, e);
+            PlayRound = new DelegateCommand(o => _model.PlayRound((Position)o));
         }
 
         public event EventHandler GameHasEndedInTie;
@@ -22,8 +22,7 @@
 
         public List<ButtonViewModel> ButtonViewModelList { get; } = new List<ButtonViewModel>();
 
-        public DelegateCommand PlayRound => _playRoundCommand ??
-            (_playRoundCommand = new DelegateCommand(o => _model.PlayRound((Position)o)));
+        public DelegateCommand PlayRound { get; private set; }
 
         public DelegateCommand StartRound => _startRoundCommand ??
             (_startRoundCommand = new DelegateCommand(o => _model.PlayRound()));
